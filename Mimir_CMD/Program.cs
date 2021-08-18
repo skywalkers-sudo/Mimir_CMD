@@ -38,7 +38,14 @@ namespace Mimir_CMD
                     //watcher.IncludeSubdirectories = true;
                     watcher.EnableRaisingEvents = true;
 
-                    Console.WriteLine("Watcher runs -- Press enter to exit.");
+                    Console.WriteLine (
+                        "\n                           ***********   Watcher looks @ " + path + "   ***********" +
+                        "\n                  to optimize code, submit or download @ https://github.com/skywalkers-sudo/Mimir_CMD " +
+                        "\n" +
+                        "\n" + "log:" +
+                        "\n"
+                        );
+
                     Console.ReadLine();
                 }
             }
@@ -53,22 +60,23 @@ namespace Mimir_CMD
 
         private static void OnCreated(object sender, FileSystemEventArgs e)
         {
-            string value = $"Created: {e.FullPath}";
-            Console.WriteLine(value);
-
             try
             {
-                // =================================================================================HEAD==============================================================================================
-                
+
+                // Settings BEGIN
                 string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML
                 string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML
 
-                bool STATUSNC = true;
-                bool toNCNr = true;
-                bool refpoint = true;
-                bool altfolder = true;
-                bool folderstatus = true;
+                bool STATUSNC = true;           // Status vor NC Name schreiben
+                bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
+                bool refpoint = true;           // Refpoint umschreiben aktivieren (nur Bohrer "S2" zu "1")
+                bool altfolder = false;         // alternative Ordnerbenennung (wie in Coscom)
+                bool folderstatus = false;      // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
+                // Settings ENDE
 
+
+
+                // =================================================================================HEAD==============================================================================================
                 string[] xmlListEXIST = Directory.GetFiles(ROOTXML, "*.xml");
                 int anzahlxml = xmlListEXIST.GetLength(0);
 
@@ -370,14 +378,11 @@ namespace Mimir_CMD
                         _ = sb.Append("\n" + " --> Created Directory " + @TARGETXML + " and moved File");
                     }
 
-                    // ==================================================================================== FINI =============================================================================================
-                    _ = sb.Append("\n" + "=================  Fini " + filename + "  ================");
-                    // schreibe Infos in settingsdatei (für Ausgabefenster)
-                    
+                    // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
+                    _ = sb.Append("\n" + "=================  Fini " + filename + "  ================ \n");
                     Console.WriteLine(sb);
 
-
-                    // infos in log schreiben
+                    // ========================================================================    INFOS in LOG schreiben      ===============================================================================
                     if (Directory.Exists(TARGETXML + "log_sync_xml/"))
                     {
                         StreamWriter myWriter = File.CreateText(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log");
@@ -395,13 +400,16 @@ namespace Mimir_CMD
                     anzahlxml--;
                 }
             }
+
+
+
+
+
             // =======================================================================    Fehler abfangen    =========================================================================================
             catch (Exception u)
             {
                 Console.WriteLine("" + u);
             }
-
-
         }
 
 
