@@ -68,7 +68,7 @@ namespace Mimir_CMD
                 bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
                 bool refpoint = true;           // Refpoint umschreiben aktivieren (nur Bohrer "S2" zu "1")
                 bool altfolder = false;         // alternative Ordnerbenennung (wie in Coscom)
-                bool folderstatus = false;      // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
+                bool folderstatus = true;      // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
                 // Settings ENDE
 
 
@@ -211,7 +211,6 @@ namespace Mimir_CMD
                         xmlDoc.Load(path1);
 
 
-                        // Lesen von Werkzeugreferenzpunkt
                         XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools");
 
                         if (noderead1 != null)
@@ -364,6 +363,59 @@ namespace Mimir_CMD
                     if (folderstatus == true)
                     {
 
+                                                                //---------- in Arbeit*----------
+                        XmlDocument xmlDoc = new();
+                        xmlDoc.Load(path1);
+
+
+                        // Lesen von Werkzeugstatus (funktiniert nur solange nicht mehr Unterknoten im Knoten param drinnen sind)
+                        XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/customData/param");
+
+
+                        
+                        XmlNode noderead2 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools");
+
+
+                        if (noderead1 != null)
+                        {
+
+                            var Status = noderead1.Attributes["value"].Value;
+
+
+                            switch (Status)
+                            {
+                                case "Freigegeben":
+                                    
+                                    
+                                    XmlNode root = xmlDoc.DocumentElement;
+
+                                    //Create a new node.
+                                    XmlElement elem = xmlDoc.CreateElement("TESTFOLDER");
+                                    elem.InnerText = "19.95";
+
+                                    //Add the node to the document.
+                                    root.InsertBefore(elem, root.FirstChild);
+
+
+
+                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    break;
+
+
+
+
+                                case "FAVORIT":
+                                    noderead2.Attributes[0].Value = "7003 - Schaftfräser";
+                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    break;
+
+                                default:
+                                    _ = sb.Append("\n" + " --> Status nicht gefunden ");
+                                    break;
+                            }
+
+                            xmlDoc.Save(path1);
+                        }
 
 
 
