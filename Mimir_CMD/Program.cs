@@ -8,15 +8,12 @@ namespace Mimir_CMD
 {
     class Program
     {
-
-
-
         static void Main()
         {
             try
             {
                 {
-                    string path = @"C:\Users\ni88\Desktop\";
+                    string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";
                     using var watcher = new FileSystemWatcher(@path);
 
                     watcher.NotifyFilter = NotifyFilters.Attributes
@@ -64,8 +61,8 @@ namespace Mimir_CMD
             {
 
                 // Settings BEGIN
-                string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML
-                string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML
+                string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
+                string TARGETXML = @"C:\Users\stephan.nirschl\Desktop\sync\";   // Zielverzeichnis der zu schreibenden XML
 
                 bool STATUSNC = true;           // Status vor NC Name schreiben
                 bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
@@ -102,8 +99,12 @@ namespace Mimir_CMD
 
                     // stringbuilder für Info
                     StringBuilder sb = new();
+
                     _ = sb.Append("==========  neues Wkz gefunden " + filename + "  ==========");
 
+
+                    string datetime = DateTime.Now.ToString();
+                    _ = sb.Append("\n---------------  " + datetime + "  ---------------");
 
 
 
@@ -362,6 +363,9 @@ namespace Mimir_CMD
                     // ================================================================================FEATURE 5 CHECK========================================================================================
                     if (folderstatus == true)
                     {
+
+
+
 
                     }
 
