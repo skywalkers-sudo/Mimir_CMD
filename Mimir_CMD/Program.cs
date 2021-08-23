@@ -108,11 +108,11 @@ namespace Mimir_CMD
                     // stringbuilder für Info
                     StringBuilder sb = new();
 
-                    _ = sb.Append("===============  neues Wkz gefunden " + filename + "  ===============");
+                    _ = sb.Append("=============================  neues Wkz gefunden " + filename + "  =============================");
 
 
                     string datetime = DateTime.Now.ToString();
-                    _ = sb.Append("\n---------------  " + datetime + "  ---------------");
+                    _ = sb.Append("\n                  ---------------  " + datetime + "  ---------------");
 
 
 
@@ -447,7 +447,7 @@ namespace Mimir_CMD
                     }
 
                     // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
-                    _ = sb.Append("\n" + "======================  Fini " + filename + "  ===================== \n");
+                    _ = sb.Append("\n" + "====================================  Fini " + filename + "  ==================================== \n");
                     Console.WriteLine(sb);
 
                     // ========================================================================    INFOS in LOG schreiben      ===============================================================================
