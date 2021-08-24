@@ -68,11 +68,9 @@ namespace Mimir_CMD
                 string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
                 string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";   // Zielverzeichnis der zu schreibenden XML
 
-                string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace home)
-                string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML (Testspace home)
+                //string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace home)
+                //string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML (Testspace home)
 
-                //string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
-                //string TARGETXML = @"C:\Users\stephan.nirschl\Desktop\sync\";   // Zielverzeichnis der zu schreibenden XML (Workspace)
 
                 bool STATUSNC = true;           // Status vor NC Name schreiben
                 bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
