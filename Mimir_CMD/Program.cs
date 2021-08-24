@@ -2,18 +2,22 @@
 using System.IO;
 using System.Text;
 using System.Xml;
-
+using System.Xml.Linq;
 
 namespace Mimir_CMD
 {
     class Program
     {
+        
+
         static void Main()
         {
             try
             {
                 {
-                    string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";
+                    //string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
+                    string path = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace Home)
+
                     using var watcher = new FileSystemWatcher(@path);
 
                     watcher.NotifyFilter = NotifyFilters.Attributes
@@ -64,6 +68,12 @@ namespace Mimir_CMD
                 string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
                 string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";   // Zielverzeichnis der zu schreibenden XML
 
+                string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace home)
+                string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML (Testspace home)
+
+                //string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
+                //string TARGETXML = @"C:\Users\stephan.nirschl\Desktop\sync\";   // Zielverzeichnis der zu schreibenden XML (Workspace)
+
                 bool STATUSNC = true;           // Status vor NC Name schreiben
                 bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
                 bool refpoint = true;           // Refpoint umschreiben aktivieren (nur Bohrer "S2" zu "1")
@@ -108,7 +118,7 @@ namespace Mimir_CMD
 
 
 
-                    // ================================================================================FEATURE 1 CHECK========================================================================================
+                    // ================================================================================FEATURE 1 CHECK (Werkzeugstatus vor NC-Namen hinzufügen) ========================================================================================
                     if (STATUSNC == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -142,7 +152,7 @@ namespace Mimir_CMD
 
                     }
 
-                    // ================================================================================FEATURE 2 CHECK========================================================================================
+                    // ================================================================================FEATURE 2 CHECK (set 000 ungeprüftes Wkz)========================================================================================
                     if (toNCNr == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -156,7 +166,7 @@ namespace Mimir_CMD
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================FEATURE 3 CHECK========================================================================================
+                    // ================================================================================FEATURE 3 CHECK (alternative refpoint) ========================================================================================
                     if (refpoint == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -204,7 +214,7 @@ namespace Mimir_CMD
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================FEATURE 4 CHECK========================================================================================
+                    // ================================================================================FEATURE 4 CHECK (alternative Folder) ========================================================================================
                     if (altfolder == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -359,9 +369,11 @@ namespace Mimir_CMD
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================FEATURE 5 CHECK========================================================================================
+                    // ================================================================================FEATURE 5 CHECK (Status folder)========================================================================================
                     if (folderstatus == true)
-{
+                    {
+
+                                                                //---------- in Arbeit*----------
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);             // xml laden
 
@@ -439,7 +451,7 @@ namespace Mimir_CMD
                     }
 
                     // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
-                     _ = sb.Append("\n" + "====================================  Fini " + filename + "  ==================================== \n");
+                    _ = sb.Append("\n" + "=================  Fini " + filename + "  ================ \n");
                     Console.WriteLine(sb);
 
                     // ========================================================================    INFOS in LOG schreiben      ===============================================================================
@@ -460,33 +472,11 @@ namespace Mimir_CMD
                     anzahlxml--;
                 }
             }
-
-
-
-
-
             // =======================================================================    Fehler abfangen    =========================================================================================
             catch (Exception u)
             {
                 Console.WriteLine("" + u);
             }
         }
-
-
-
-
-
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
