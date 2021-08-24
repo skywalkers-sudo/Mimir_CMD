@@ -369,9 +369,7 @@ namespace Mimir_CMD
 
                     // ================================================================================FEATURE 5 CHECK (Status folder)========================================================================================
                     if (folderstatus == true)
-                    {
-
-                                                                //---------- in Arbeit*----------
+                    {                                       
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);             // xml laden
 
