@@ -329,8 +329,8 @@ namespace Mimir_CMD
                                     _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
-                                case "Entgratfäser (nur Winkel scheidend)":
-                                    noderead1.Attributes[0].Value = "7303 - Entgratfräser (nur Winkel scheidend)";
+                                case "Entgratfräser (nur Winkel schneidend)":
+                                    noderead1.Attributes[0].Value = "7303 - Entgratfräser (nur Winkel schneidend)";
                                     _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
