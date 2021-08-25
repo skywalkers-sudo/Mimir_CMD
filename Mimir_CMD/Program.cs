@@ -15,8 +15,8 @@ namespace Mimir_CMD
             try
             {
                 {
-                    //string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
-                    string path = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace Home)
+                    string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
+                    //string path = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace Home)
 
                     using var watcher = new FileSystemWatcher(@path);
 
