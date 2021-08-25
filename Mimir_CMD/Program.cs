@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -40,10 +41,10 @@ namespace Mimir_CMD
                     watcher.EnableRaisingEvents = true;
 
                     Console.WriteLine (
-                        "\n                           ***********   Watcher looks @ " + path + "   ***********" +
-                        "\n                  to optimize code, submit or download @ https://github.com/skywalkers-sudo/Mimir_CMD " +
+                        "\n download code @ https://github.com/skywalkers-sudo/Mimir_CMD " +
                         "\n" +
-                        "\n" + "log:" +
+                        "\n ***********   Watcher looks @ " + path + "   ***********" +
+                        "\n" + " log:" +
                         "\n"
                         );
 
@@ -108,11 +109,15 @@ namespace Mimir_CMD
                     // stringbuilder für Info
                     StringBuilder sb = new();
 
-                    _ = sb.Append("=============================  neues Wkz gefunden " + filename + "  =============================");
+                    _ = sb.Append("=============================  neues Wkz gefunden " + filename + "  ==============================");
 
 
                     string datetime = DateTime.Now.ToString();
-                    _ = sb.Append("\n                  ---------------  " + datetime + "  ---------------");
+                    string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+
+                    _ = sb.Append("\n      --------- Date: " + datetime + " /// Übergeben mit Version: " + version + " ---------");
+
+
 
 
 
@@ -447,22 +452,37 @@ namespace Mimir_CMD
                     }
 
                     // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
-                    _ = sb.Append("\n" + "=================  Fini " + filename + "  ================ \n");
+                    _ = sb.Append("\n" + "=====================================  Fini " + filename + "  ===================================== \n");
                     Console.WriteLine(sb);
 
                     // ========================================================================    INFOS in LOG schreiben      ===============================================================================
+                    
+                    // if log directory exists
                     if (Directory.Exists(TARGETXML + "log_sync_xml/"))
                     {
-                        StreamWriter myWriter = File.CreateText(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log");
-                        myWriter.WriteLine(sb.ToString());
-                        myWriter.Close(); // öffne die zu schreibende Datei
+                        // if logfile exist append content
+                        if (File.Exists(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log"))
+                        {
+                            using StreamWriter myWriter = new(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log", append: true);
+                            myWriter.WriteLineAsync(sb.ToString());
+                            myWriter.Close();
+
+                        }
+                        // if logfile not exists create new .log
+                        else
+                        {
+                            StreamWriter myWriter = File.CreateText(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log");
+                            myWriter.WriteLine(sb.ToString());
+                            myWriter.Close();
+                        }
                     }
+                    // if log directory not exists
                     else
                     {
                         Directory.CreateDirectory(TARGETXML + "log_sync_xml/");
                         StreamWriter myWriter = File.CreateText(TARGETXML + "log_sync_xml/" + filnamewithoutExtension + ".log");
                         myWriter.WriteLine(sb.ToString());
-                        myWriter.Close(); // öffne die zu schreibende Datei
+                        myWriter.Close();
                     }
 
                     anzahlxml--;
