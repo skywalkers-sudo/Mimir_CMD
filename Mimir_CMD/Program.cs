@@ -78,6 +78,7 @@ namespace Mimir_CMD
                 bool refpoint = true;           // Refpoint umschreiben aktivieren (nur Bohrer "S2" zu "1")
                 bool altfolder = true;         // alternative Ordnerbenennung (wie in Coscom)
                 bool folderstatus = true;      // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
+                bool shaftmodepara = true;      // Wenn NominalØ gleich SchaftØ setze Schaftmodus auf parametric (bei Schaftfräser, Radienfräser, Kugelfräser und Bohrer)
                 // Settings ENDE
 
 
@@ -433,10 +434,15 @@ namespace Mimir_CMD
 
                             xmlDoc.Save(path1);
                         }
+                    }
 
+                    // ================================================================================FEATURE 6 CHECK (shaftmode prara)========================================================================================
+                    if (shaftmodepara == true)
+                    {
 
 
                     }
+
 
                     // ================================================================================verschiebe Datei=======================================================================================
                     if (System.IO.Directory.Exists(TARGETXML))
