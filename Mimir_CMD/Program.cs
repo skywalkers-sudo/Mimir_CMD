@@ -66,8 +66,8 @@ namespace Mimir_CMD
             {
 
                 // Settings BEGIN
-                string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
-                string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";   // Zielverzeichnis der zu schreibenden XML
+                 string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
+                 string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";   // Zielverzeichnis der zu schreibenden XML
 
                 //string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace home)
                 //string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML (Testspace home)
@@ -109,20 +109,15 @@ namespace Mimir_CMD
 
                     // stringbuilder für Info
                     StringBuilder sb = new();
-
-                    _ = sb.Append("=============================  neues Wkz gefunden " + filename + "  ==============================");
-
-
+ 
                     string datetime = DateTime.Now.ToString();
                     string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-                    _ = sb.Append("\n      --------- Date: " + datetime + " /// Übergeben mit Version: " + version + " ---------");
+                    _ = sb.Append("\n Date: " + datetime + " /// Übergeben mit Version: " + version );
+                    _ = sb.Append("\n=============================  neues Wkz gefunden " + filename + "  ==============================");
+ 
 
-
-
-
-
-                    // ================================================================================FEATURE 1 CHECK (Werkzeugstatus vor NC-Namen hinzufügen) ========================================================================================
+                    // ================================================================================FEATURE 1 CHECK (Werkzeugstatus vor NC-Namen hinzufügen) ====================================================================
                     if (STATUSNC == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -156,7 +151,7 @@ namespace Mimir_CMD
 
                     }
 
-                    // ================================================================================FEATURE 2 CHECK (set 000 ungeprüftes Wkz)========================================================================================
+                    // ================================================================================FEATURE 2 CHECK (set 000 ungeprüftes Wkz)==================================================================================== 
                     if (toNCNr == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -170,7 +165,7 @@ namespace Mimir_CMD
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================FEATURE 3 CHECK (alternative refpoint) ========================================================================================
+                    // ================================================================================FEATURE 3 CHECK (alternative refpoint) ====================================================================================== 
                     if (refpoint == true)
                     {
                         XmlDocument xmlDoc = new();
@@ -373,7 +368,7 @@ namespace Mimir_CMD
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================FEATURE 5 CHECK (Status folder)========================================================================================
+                    // ================================================================================FEATURE 5 CHECK (Status folder)==============================================================================================
                     if (folderstatus == true)
                     {                                       
                         XmlDocument xmlDoc = new();
@@ -436,14 +431,61 @@ namespace Mimir_CMD
                         }
                     }
 
-                    // ================================================================================FEATURE 6 CHECK (shaftmode prara)========================================================================================
+                    // ================================================================================FEATURE 6 CHECK (shaftmode para)=============================================================================================
                     if (shaftmodepara == true)
                     {
+                        XmlDocument xmlDoc = new();
+                        xmlDoc.Load(path1);             // xml laden
+
+                        XmlNode nominalD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
+                        XmlNode shaftD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
+                        XmlNode shaftm = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftType']");
+                        XmlNode wkzclass = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool");
+
+                        var nominalDiameter = nominalD.Attributes["value"].Value;
+                        var shaftDiameter = shaftD.Attributes["value"].Value;
+                        var shaftmode = shaftm.Attributes["value"].Value;
+                        var toolclass = wkzclass.Attributes["type"].Value;
 
 
+                        if (nominalDiameter == shaftDiameter && shaftmode == "free")
+                        {
+
+                            switch (toolclass)
+                            {
+                                case "endMill":
+                                    shaftm.Attributes[1].Value = "parametric";
+                                    _ = sb.Append("\n" + " --> Schaftfräser erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt ");
+                                    break;
+
+
+                                case "radiusMill":
+                                    shaftm.Attributes[1].Value = "parametric";
+                                    _ = sb.Append("\n" + " --> Radiusfräsr erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt");
+                                    break;
+
+
+                                case "ballMill":
+                                    shaftm.Attributes[1].Value = "parametric";
+                                    _ = sb.Append("\n" + " --> Kugelkfräser erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt");
+                                    break;
+
+
+                                default:
+
+                                    _ = sb.Append("\n" + " --> NominalØ = SchaftØ aber keine notwendige Klasse erkannt");
+                                    break;
+
+                            }
+                        }
+                        else 
+                        {
+                            _ = sb.Append("\n" + " --> Schaftparametric wird nicht verwendet");
+                        }
+
+                        xmlDoc.Save(path1);
                     }
-
-
+ 
                     // ================================================================================verschiebe Datei=======================================================================================
                     if (System.IO.Directory.Exists(TARGETXML))
                     {
@@ -456,7 +498,7 @@ namespace Mimir_CMD
                         File.Move(xmlList[0], @TARGETXML + filename);
                         _ = sb.Append("\n" + " --> Created Directory " + @TARGETXML + " and moved File");
                     }
-
+ 
                     // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
                     _ = sb.Append("\n" + "=====================================  Fini " + filename + "  ===================================== \n");
                     Console.WriteLine(sb);
@@ -490,10 +532,16 @@ namespace Mimir_CMD
                         myWriter.WriteLine(sb.ToString());
                         myWriter.Close();
                     }
+                     
+
+
 
                     anzahlxml--;
                 }
             }
+
+
+
             // =======================================================================    Fehler abfangen    =========================================================================================
             catch (Exception u)
             {
