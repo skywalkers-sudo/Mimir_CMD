@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Schaftfräser">
+      <tools folder="700305 - Schrupp-Schlichtfräser (Uni)">
+        <tool name="730177" type="endMill">
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="32 frei / 37 raus / Lmin 17,5 / Dmin 9,2" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <param name="toolShaftChamferLength" value="0" />
+          <param name="taperHeight" value="32" />
+          <param name="toolShaftDiameter" value="10" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="32" />
+          <param name="collar" value="1" />
+          <param name="cuttingEdges" value="4" />
+          <param name="cuttingLength" value="22" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="72" />
+          <param name="toolDiameter" value="10" />
+          <param name="tipDiameter" value="9.5" />
+          <param name="nominalDiameter" value="10.000000" />
+          <param name="chamferAngle" value="45.000000" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="4.6999999999999993" ey="0" cuttingArea="1" />
+              <elem2D type="line" ex="5" ey="0.30000000000001137" cuttingArea="1" />
+              <elem2D type="line" ex="5" ey="22" cuttingArea="1" />
+              <elem2D type="line" ex="4.75" ey="22" cuttingArea="1" />
+              <elem2D type="line" ex="4.75" ey="32" />
+              <elem2D type="line" ex="0" ey="32" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="5" ey="0" />
+              <elem2D type="line" ex="5" ey="5" />
+              <elem2D type="line" ex="0" ey="5" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="150.011049" />
+              <param name="spindleSpeed" value="4775" />
+              <param name="feedratePerEdge" value="0.055" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="1050.5" />
+              <param name="zFeedrate" value="2196500" />
+              <param name="material" value="Stahlwerkstoffe (normal zerspanbar)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="50.014155" />
+              <param name="spindleSpeed" value="1592" />
+              <param name="feedratePerEdge" value="0.045" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="286.56" />
+              <param name="zFeedrate" value="183080" />
+              <param name="material" value="Titan und Titanlegierungen" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="60.00442" />
+              <param name="spindleSpeed" value="1910" />
+              <param name="feedratePerEdge" value="0.055" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="420.2" />
+              <param name="zFeedrate" value="305600" />
+              <param name="material" value="Edelstähle / rostfreier Stahl (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="730177">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="730177" active="1" withCoupling="1">
+        <cont2D name="730177">
+          <elem2D type="line" sx="0" sy="0" ex="12.000000000002615" ey="0" />
+          <elem2D type="line" ex="16" ey="50.82481894478461" />
+          <elem2D type="line" ex="16" ey="84.049999999999997" />
+          <elem2D type="cwarc" cx="26" cy="84.049999999999997" ex="25.001250782228151" ey="94" />
+          <elem2D type="line" ex="31.5" ey="94" />
+          <elem2D type="line" ex="31.5" ey="98.60806716846318" />
+          <elem2D type="line" ex="28.937547169475497" ey="100.08750000000001" />
+          <elem2D type="line" ex="27.475000000000019" ey="100.08750000000003" />
+          <elem2D type="line" ex="27.475000000000016" ey="103.91250000000002" />
+          <elem2D type="line" ex="28.937547169475526" ey="103.91250000000002" />
+          <elem2D type="line" ex="31.500000000188308" ey="105.39193283568608" />
+          <elem2D type="line" ex="31.5" ey="120" />
+          <elem2D type="line" ex="0" ey="120" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Schaftfräser">
+      <ncTools folder="700305 - Schrupp-Schlichtfräser (Uni)">
+        <ncTool id="730177" ncNumber="730177" name="VHM E+S Unifräser Ø10/0,3">
+          <param name="comment" value="32 frei / 37 raus / Lmin 17,5 / Dmin 9,2" />
+          <param name="maxSpindleSpeed" value="22000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="730177" type="holder" />
+            <component name="730177" type="tool" reach="37.000000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="FAVORIT" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Stahlwerkstoffe (normal zerspanbar)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="7.5" />
+              <param name="cuttingWidth" value="10" />
+            </cuttingProfile>
+            <cuttingProfile material="Titan und Titanlegierungen" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="7.5" />
+              <param name="cuttingWidth" value="10" />
+            </cuttingProfile>
+            <cuttingProfile material="Edelstähle / rostfreier Stahl (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="7.5" />
+              <param name="cuttingWidth" value="10" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>
