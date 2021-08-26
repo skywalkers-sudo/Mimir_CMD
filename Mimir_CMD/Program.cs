@@ -351,8 +351,8 @@ namespace Mimir_CMD
 
                                 //------------------------------Messtaster --------------------
 
-                                case "Messtaster":
-                                    noderead1.Attributes[0].Value = "7500 - Messtaster";
+                                case "Messtaster & Messdorne":
+                                    noderead1.Attributes[0].Value = "7500 - Messtaster & Messdorne";
                                     _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
