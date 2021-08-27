@@ -9,7 +9,7 @@ namespace Mimir_CMD
 {
     class Program
     {
-        
+
 
         static void Main()
         {
@@ -19,7 +19,8 @@ namespace Mimir_CMD
                     string path = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML (Workspace)
                     //string path = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace Home)
 
-                    using var watcher = new FileSystemWatcher(@path);
+
+                    using var watcher = new FileSystemWatcher(path);
 
                     watcher.NotifyFilter = NotifyFilters.Attributes
                                          | NotifyFilters.CreationTime
@@ -66,11 +67,11 @@ namespace Mimir_CMD
             {
 
                 // Settings BEGIN
-                 string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";       // Wurzelverzeichis der zu ladenden XML
-                 string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";   // Zielverzeichnis der zu schreibenden XML
+                string ROOTXML = @"\\srvcc01\Coscom_Daten\DATEN\TEMP\";                        // Wurzelverzeichis der zu ladenden XML
+                string TARGETXML = @"C:\Users\Public\Documents\OPEN MIND\tooldb\sync\";        // Zielverzeichnis der zu schreibenden XML
 
-                //string ROOTXML = @"C:\Users\ni88\Desktop\";       // Wurzelverzeichis der zu ladenden XML (Testspace home)
-                //string TARGETXML = @"C:\Users\ni88\Desktop\custom\";   // Zielverzeichnis der zu schreibenden XML (Testspace home)
+                //string ROOTXML = @"C:\Users\ni88\Desktop\";                                    // Wurzelverzeichis der zu ladenden XML (Testspace home)
+                //string TARGETXML = @"C:\Users\ni88\Desktop\custom\";                           // Zielverzeichnis der zu schreibenden XML (Testspace home)
 
 
                 bool STATUSNC = true;           // Status vor NC Name schreiben
@@ -79,6 +80,7 @@ namespace Mimir_CMD
                 bool altfolder = true;          // alternative Ordnerbenennung (wie in Coscom)
                 bool folderstatus = true;       // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
                 bool shaftmodepara = true;      // Wenn NominalØ gleich SchaftØ setze Schaftmodus auf parametric (bei Schaftfräser, Radienfräser, Kugelfräser und Bohrer)
+                bool bugcheck = true;           // überprüfe XML auf mögliche Fehler (aktuell: Z-Vorschub <9999?; Shaft Flag gesetzt?)
                 // Settings ENDE
 
 
@@ -113,8 +115,7 @@ namespace Mimir_CMD
                     string datetime = DateTime.Now.ToString();
                     string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-                    _ = sb.Append("\n Date: " + datetime + " /// Übergeben mit Version: " + version);
-                    _ = sb.Append("\n=============================  neues Wkz gefunden " + filename + "  ==============================");
+                    _ = sb.Append("\n========= Neues Wkz gefunden " + filename + " /// Date: " + datetime + " /// Übergeben mit Version: " + version+ " =========");
 
 
                     // ================================================================================FEATURE 1 CHECK (Werkzeugstatus vor NC-Namen hinzufügen) ====================================================================
@@ -123,9 +124,7 @@ namespace Mimir_CMD
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);
 
-
-                        // Lesen von Werkzeugstatus (funktiniert nur solange nicht mehr Unterknoten im Knoten param drinnen sind)
-                        XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/customData/param");
+                        XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/customData/param[@name='Werkzeugstatus']");
 
                         if (noderead1 != null)
                         {
@@ -143,14 +142,13 @@ namespace Mimir_CMD
                                 XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
                                 nodewrite.Attributes[2].Value = Status + " // " + bNcname;
 
-                                _ = sb.Append("\n" + " --> Werkzeugname geändert auf --> " + Status + " // " + bNcname);
+                                _ = sb.Append("\n" + " --> ADD STATUS TO NAME: Werkzeugname geändert auf --> " + Status + " // " + bNcname);
 
                             }
                         }
                         xmlDoc.Save(path1);
-
                     }
-
+ 
                     // ================================================================================FEATURE 2 CHECK (set 000 ungeprüftes Wkz)==================================================================================== 
                     if (toNCNr == true)
                     {
@@ -158,9 +156,16 @@ namespace Mimir_CMD
                         xmlDoc.Load(path1);
 
                         XmlNode node = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
-                        node.Attributes[1].Value = newNCNUMBER;
 
-                        _ = sb.Append("\n" + " --> ungeprüftes Wkz NC-Nummer auf  --> " + newNCNUMBER + " geändert");
+                        if (node is not null)
+                        {
+                            node.Attributes[1].Value = newNCNUMBER;
+                            _ = sb.Append("\n" + " --> UNGEPRÜFTES WKZ:    NC-Nummer auf:   '" + newNCNUMBER + "'   geändert");
+                        }
+                        else
+                        {
+                            _ = sb.Append("\n" + " --> UNGEPRÜFTES WKZ:    Knoten nicht vorhanden, 000 konnte nicht hinzugefügt werden");
+                        }
 
                         xmlDoc.Save(path1);
                     }
@@ -191,23 +196,23 @@ namespace Mimir_CMD
                                     XmlNode nodewrite = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/referencePoints/referencePoint");
                                     nodewrite.Attributes[1].Value = "1";
 
-                                    _ = sb.Append("\n" + " --> Wkz-Klasse 'toolDrill' und Referenzpunkt '" + refpoint1 + "' erkannt --> Name Referenzpunkt geaendert auf '1' ");
+                                    _ = sb.Append("\n" + " --> WKZ-REF:            Wkz-Klasse 'toolDrill' und Referenzpunkt '" + refpoint1 + "' erkannt --> Name Referenzpunkt geaendert auf '1' ");
 
                                 }
                                 else
                                 {
-                                    _ = sb.Append("\n" + " --> Werkzeugreferenzname nicht gefunden und/oder Werkzeugklasse ist kein Bohrer  ");
+                                    _ = sb.Append("\n" + " --> WKZ-REF:            Werkzeugreferenzname nicht gefunden und/oder Werkzeugklasse ist kein Bohrer  ");
 
                                 }
                             }
                             else
                             {
-                                _ = sb.Append("\n" + " --> Referenzpunkte gefunden, Eintrag Werkzeugklasse nicht gefunden");
+                                _ = sb.Append("\n" + " --> WKZ-REF:            Referenzpunkte gefunden, Eintrag Werkzeugklasse nicht gefunden");
                             }
                         }
                         else
                         {
-                            _ = sb.Append("\n" + " --> Keine Referenzpunktinformationen enthalten ");
+                            _ = sb.Append("\n" + " --> WKZ-REF:            Keine Referenzpunktinformationen enthalten ");
                         }
 
                         xmlDoc.Save(path1);
@@ -232,47 +237,47 @@ namespace Mimir_CMD
                                 // ------------------Fräswerkzeuge
                                 case "Planfräser / Messerköpfe":
                                     noderead1.Attributes[0].Value = "7000 - Planfräser / Messerköpfe";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Schaftfräser":
                                     noderead1.Attributes[0].Value = "7003 - Schaftfräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Kugelfräser / Ballfräser":
                                     noderead1.Attributes[0].Value = "7004 - Kugelfräser / Ballfräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Formfräser / Sonderfräswerkzeuge":
                                     noderead1.Attributes[0].Value = "7006 - Formfräser / Sonderfräswerkzeuge";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Gewindefräser":
                                     noderead1.Attributes[0].Value = "7008 - Gewindefräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Scheibenfräser und Sägeblätter":
                                     noderead1.Attributes[0].Value = "7009 - Scheibenfräser und Sägeblätter";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Tonnen- / Linsenfräser":
                                     noderead1.Attributes[0].Value = "7011 - Tonnen- / Linsenfräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Radienfräser":
                                     noderead1.Attributes[0].Value = "7012 - Radienfräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "T-Nutenfräser":
                                     noderead1.Attributes[0].Value = "7014 - T-Nutenfräser";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Bohrwerkzeuge--------------------
@@ -283,85 +288,85 @@ namespace Mimir_CMD
 
                                 case "Bohrer":
                                     noderead1.Attributes[0].Value = "7101 - Bohrer";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Reibahlen":
                                     noderead1.Attributes[0].Value = "7102 - Reibahlen";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Spindler / Ausdreher":
                                     noderead1.Attributes[0].Value = "7103 - Spindler / Ausdreher";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Zentrierbohrer":
                                     noderead1.Attributes[0].Value = "7104 - Zentrierbohrer";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Formbohrer & Reibahlen":
                                     noderead1.Attributes[0].Value = "7105 - Formbohrer & Reibahlen";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Gewindebohrer-/former--------------------
 
                                 case "Metrische-Gewinde":
                                     noderead1.Attributes[0].Value = "7200 - Metrische-Gewinde";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Zoll-Gewinde":
                                     noderead1.Attributes[0].Value = "7201 - Zoll-Gewinde";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Sonder-Gewinde":
                                     noderead1.Attributes[0].Value = "7202 - Sonder-Gewinde";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Senk und Faswerkzeuge --------------------
 
                                 case "Senk-Werkzeuge":
                                     noderead1.Attributes[0].Value = "7300 - Senk-Werkzeuge";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Entgratfräser (nur Winkel schneidend)":
                                     noderead1.Attributes[0].Value = "7303 - Entgratfräser (nur Winkel schneidend)";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Fasenfräser (mit Umfangsscheide)":
                                     noderead1.Attributes[0].Value = "7304 - Fasenfräser (mit Umfangsschneide)";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Fasen- und Schriftstichel":
                                     noderead1.Attributes[0].Value = "7305 - Fasen- und Schriftstichel";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Messtaster --------------------
 
                                 case "Messtaster & Messdorne":
                                     noderead1.Attributes[0].Value = "7500 - Messtaster & Messdorne";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Reinigungswkz Propeller etc --------------------
 
                                 case "Bürsten, Propeller, usw...":
                                     noderead1.Attributes[0].Value = "7600 - Bürsten, Propeller, usw...";
-                                    _ = sb.Append("\n" + " --> Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Wenns mal wieder schiefläuft --------------------
                                 default:
-                                    _ = sb.Append("\n" + " --> Klasse für Ordner nicht gefunden ");
+                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse für Ordner nicht gefunden ");
                                     break;
                             }
                         }
@@ -374,8 +379,7 @@ namespace Mimir_CMD
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);             // xml laden
 
-                        // Lesen von Werkzeugstatus (funktiniert nur solange nicht mehr Unterknoten im Knoten param drinnen sind)
-                        XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/customData/param");
+                        XmlNode noderead1 = xmlDoc.SelectSingleNode("/omtdx/ncTools/ncTools/ncTools/ncTool/customData/param[@name='Werkzeugstatus']");
 
                         string folderspezial = "SONDERWKZS (Bestand prüfen)";
 
@@ -386,12 +390,12 @@ namespace Mimir_CMD
                             switch (Status)
                             {
                                 case "Freigegeben":
-                                    _ = sb.Append("\n" + " --> Status Freigegeben gefunden -> wird nicht in Ordner '" + folderspezial + "' hinzugefügt");
+                                    _ = sb.Append("\n" + " --> STATUS-ORDNER:      Status Freigegeben gefunden -> wird nicht in Ordner '" + folderspezial + "' hinzugefügt");
                                     break;
 
 
                                 case "FAVORIT":
-                                    _ = sb.Append("\n" + " --> Klasse FAVOURIT gefunden -> wird nicht in Ordner '" + folderspezial + "' hinzugefügt");
+                                    _ = sb.Append("\n" + " --> STATUS-ORDNER:      Klasse FAVOURIT gefunden -> wird nicht in Ordner '" + folderspezial + "' hinzugefügt");
                                     break;
 
 
@@ -421,7 +425,7 @@ namespace Mimir_CMD
                                     root1.Attributes.SetNamedItem(attr);
 
 
-                                    _ = sb.Append("\n" + " --> Sonderstatus gefunden -> in Ordner '" + folderspezial + "' hinzugefügt");
+                                    _ = sb.Append("\n" + " --> STATUS-ORDNER:      Sonderstatus gefunden -> in Ordner '" + folderspezial + "' hinzugefügt");
 
                                     break;
 
@@ -437,56 +441,350 @@ namespace Mimir_CMD
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);             // xml laden
 
-                        XmlNode nominalD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
-                        XmlNode shaftD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftDiameter']");
-                        XmlNode shaftm = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftType']");
                         XmlNode wkzclass = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool");
-
-                        var nominalDiameter = nominalD.Attributes["value"].Value;
-                        var shaftDiameter = shaftD.Attributes["value"].Value;
-                        var shaftmode = shaftm.Attributes["value"].Value;
                         var toolclass = wkzclass.Attributes["type"].Value;
 
-
-                        if (nominalDiameter == shaftDiameter && shaftmode == "free")
+                        if (toolclass == "endMill" | toolclass == "radiusMill" | toolclass == "ballMill")
                         {
+                            XmlNode nominalD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
+                            XmlNode shaftD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftDiameter']");
+                            XmlNode shaftm = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftType']");
 
-                            switch (toolclass)
+                            if (nominalD != null && shaftD != null && shaftm != null)
                             {
-                                case "endMill":
+                                var nominalDiameter = nominalD.Attributes["value"].Value;
+                                var shaftDiameter = shaftD.Attributes["value"].Value;
+                                var shaftmode = shaftm.Attributes["value"].Value;
+
+                                if (nominalDiameter == shaftDiameter && shaftmode == "free")
+                                {
                                     shaftm.Attributes[1].Value = "parametric";
-                                    _ = sb.Append("\n" + " --> Schaftfräser erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt ");
-                                    break;
-
-
-                                case "radiusMill":
-                                    shaftm.Attributes[1].Value = "parametric";
-                                    _ = sb.Append("\n" + " --> Radiusfräsr erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt");
-                                    break;
-
-
-                                case "ballMill":
-                                    shaftm.Attributes[1].Value = "parametric";
-                                    _ = sb.Append("\n" + " --> Kugelkfräser erkannt & NominalØ = SchaftØ --> Schaft wird auf parametrik gesetzt");
-                                    break;
-
-
-                                default:
-
-                                    _ = sb.Append("\n" + " --> NominalØ = SchaftØ aber keine notwendige Klasse erkannt");
-                                    break;
-
+                                    _ = sb.Append("\n" + " --> SCHAFTPARAMETRIK:   NominalØ = SchaftØ --> Schaft wird auf PARAMETRIK gesetzt ");
+                                }
+                                else
+                                {
+                                    _ = sb.Append("\n" + " --> SCHAFTPARAMETRIK:   NominalØ != SchaftØ --> Schaft bleibt FREE ");
+                                }
+                            }
+                            else
+                            {
+                                _ = sb.Append("\n" + " --> SCHAFTPARAMETRIK:   erfolderliche Werte nicht in xml enthalten ");
                             }
                         }
+
+
                         else
                         {
-                            _ = sb.Append("\n" + " --> Schaftparametric wird nicht verwendet");
+                            _ = sb.Append("\n" + " --> SCHAFTPARAMETRIK:   Keine unterstützte Klasse");
                         }
 
                         xmlDoc.Save(path1);
                     }
 
-                    // ================================================================================verschiebe Datei=======================================================================================
+                    // ================================================================================FEATURE 7 CHECK (überprüfe auf Fehler)=======================================================================================
+                    if (bugcheck == true)
+                    {
+                        XmlDocument xmlDoc = new();
+                        xmlDoc.Load(path1);             // xml laden
+                        
+                        XmlNode wkzclass = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool");
+                        XmlNode shaftflag = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftEnabled']");
+
+
+                        var toolclass = wkzclass.Attributes["type"].Value;
+
+                        // Schaft prüfung
+                        switch (toolclass)
+                        {
+                            case "endMill":
+                                if (shaftflag != null)
+                                {
+                                    var valueshaftflag = shaftflag.Attributes["value"].Value;
+
+                                    if (valueshaftflag == "1")
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          Schaft-Check --> all is good");
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaft nicht aktiviert");
+
+                                        // ====================  START FÜGE HINWEIS IN XML =====================
+                                        // Lese bestehenden Werkzeugnamen
+                                        XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        if (noderead2 != null)
+                                        {
+                                            var bNcname = noderead2.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                        {
+                                            var bNcname = noderead3.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else
+                                        {
+                                            _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                        }
+                                        // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                    }
+                                }
+                                else
+                                {
+                                    _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaftknoten in XML fehlt");
+
+                                    // ====================  START FÜGE HINWEIS IN XML =====================
+                                    // Lese bestehenden Werkzeugnamen
+                                    XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                    XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                    if (noderead2 != null)
+                                    {
+                                        var bNcname = noderead2.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                    {
+                                        var bNcname = noderead3.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                    }
+                                    // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                }
+                                break;
+
+
+                            case "radiusMill":
+                                if (shaftflag != null)
+                                {
+                                    var valueshaftflag = shaftflag.Attributes["value"].Value;
+
+                                    if (valueshaftflag == "1")
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          Schaft-Check --> all is good");
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaft nicht aktiviert");
+
+                                        // ====================  START FÜGE HINWEIS IN XML =====================
+                                        // Lese bestehenden Werkzeugnamen
+                                        XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        if (noderead2 != null)
+                                        {
+                                            var bNcname = noderead2.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                        {
+                                            var bNcname = noderead3.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else
+                                        {
+                                            _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                        }
+                                        // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                    }
+                                }
+                                else
+                                {
+                                    _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaftknoten in XML fehlt");
+
+                                    // ====================  START FÜGE HINWEIS IN XML =====================
+                                    // Lese bestehenden Werkzeugnamen
+                                    XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                    XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                    if (noderead2 != null)
+                                    {
+                                        var bNcname = noderead2.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                    {
+                                        var bNcname = noderead3.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                    }
+                                    // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                }
+                                break;
+
+
+                            case "ballMill":
+                                if (shaftflag != null)
+                                {
+                                    var valueshaftflag = shaftflag.Attributes["value"].Value;
+
+                                    if (valueshaftflag == "1")
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          Schaft-Check --> all is good");
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaft nicht aktiviert");
+
+                                        // ====================  START FÜGE HINWEIS IN XML =====================
+                                        // Lese bestehenden Werkzeugnamen
+                                        XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        if (noderead2 != null)
+                                        {
+                                            var bNcname = noderead2.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                        {
+                                            var bNcname = noderead3.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else
+                                        {
+                                            _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                        }
+                                        // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                    }
+                                }
+                                else
+                                {
+                                    _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaftknoten in XML fehlt");
+
+                                    // ====================  START FÜGE HINWEIS IN XML =====================
+                                    // Lese bestehenden Werkzeugnamen
+                                    XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                    XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                    if (noderead2 != null)
+                                    {
+                                        var bNcname = noderead2.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                    {
+                                        var bNcname = noderead3.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                    }
+                                    // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                }
+                                break;
+
+
+                            case "drilTool":
+                                if (shaftflag != null)
+                                {
+                                    var valueshaftflag = shaftflag.Attributes["value"].Value;
+
+                                    if (valueshaftflag == "1")
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          Schaft-Check --> all is good");
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaft nicht aktiviert");
+
+                                        // ====================  START FÜGE HINWEIS IN XML =====================
+                                        // Lese bestehenden Werkzeugnamen
+                                        XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        if (noderead2 != null)
+                                        {
+                                            var bNcname = noderead2.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                        {
+                                            var bNcname = noderead3.Attributes["name"].Value;
+                                            // Schreibe neuen Werkzeugnamen
+                                            XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                            nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                        }
+                                        else
+                                        {
+                                            _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                        }
+                                        // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                    }
+                                }
+                                else
+                                {
+                                    _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ATTENTION !!! Schaftknoten in XML fehlt");
+
+                                    // ====================  START FÜGE HINWEIS IN XML =====================
+                                    // Lese bestehenden Werkzeugnamen
+                                    XmlNode noderead2 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                    XmlNode noderead3 = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                    if (noderead2 != null)
+                                    {
+                                        var bNcname = noderead2.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else if (noderead3 != null)  // (notwedig falls in Feature Statusordner ein Ordner hinzugefügt wurde)
+                                    {
+                                        var bNcname = noderead3.Attributes["name"].Value;
+                                        // Schreibe neuen Werkzeugnamen
+                                        XmlNode nodewrite = xmlDoc.SelectSingleNode("omtdx/ncTools/ncTools/ncTools/ncTools/ncTool");
+                                        nodewrite.Attributes[2].Value = "!! ATTENTION !!! Schaft FEHLT" + " // " + bNcname;
+                                    }
+                                    else
+                                    {
+                                        _ = sb.Append("\n" + " --> BUG-CHECK:          !!! ERROR !!! Schreiben in XML fehlgeschlagen - Knoten nicht vorhanden");
+                                    }
+                                    // ==================== ENDE FÜGE HINWEIS IN XML =====================
+                                }
+                                break;
+
+                            default:
+
+                                break;
+                        }
+
+                        // Axialen Vorschub prüfen
+
+                        // fehlt noch 
+
+
+                        xmlDoc.Save(path1);
+                    }
+
+                    // ================================================================================FEATURE  verschiebe Datei==================================================================================================
                     if (System.IO.Directory.Exists(TARGETXML))
                     {
                         File.Move(xmlList[0], @TARGETXML + filename);
@@ -499,11 +797,11 @@ namespace Mimir_CMD
                         _ = sb.Append("\n" + " --> Created Directory " + @TARGETXML + " and moved File");
                     }
 
-                    // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
-                    _ = sb.Append("\n" + "=====================================  Fini " + filename + "  ===================================== \n");
+                    // ================================================================================FEATURE  schreibe Infos in Ausgabefenster   ============================================================================
+                    _ = sb.Append("\n" + "================================================  Fini " + filename + "  =============================================== \n"); 
                     Console.WriteLine(sb);
 
-                    // ========================================================================    INFOS in LOG schreiben      ===============================================================================
+                    // ================================================================================FEATURE  INFOS in LOG schreiben      ===============================================================================
 
                     // if log directory exists
                     if (Directory.Exists(TARGETXML + "log_sync_xml/"))
