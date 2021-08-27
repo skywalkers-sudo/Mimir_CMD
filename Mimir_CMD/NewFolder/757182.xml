@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Schaftfräser">
+      <tools folder="700302 - Schlichtfräser">
+        <tool name="757182" type="endMill">
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="48 frei / 50 raus / D-min 15,4 / L-min 28" />
+          <param name="toolShaftChamferLength" value="0" />
+          <param name="taperHeight" value="48" />
+          <param name="toolShaftDiameter" value="16" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="48" />
+          <param name="collar" value="1" />
+          <param name="tipDiameter" value="15.5" />
+          <param name="cuttingEdges" value="3" />
+          <param name="cuttingLength" value="32" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="92" />
+          <param name="toolDiameter" value="16" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="8" ey="0" cuttingArea="1" />
+              <elem2D type="line" ex="8" ey="32" cuttingArea="1" />
+              <elem2D type="line" ex="7.75" ey="32" cuttingArea="1" />
+              <elem2D type="line" ex="7.7500000000000009" ey="48" />
+              <elem2D type="line" ex="8" ey="48" />
+              <elem2D type="line" ex="8" ey="50" />
+              <elem2D type="line" ex="0" ey="50" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="57.001" />
+              <param name="spindleSpeed" value="1134" />
+              <param name="feedratePerEdge" value="0.076" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="258.552" />
+              <param name="zFeedrate" value="96390" />
+              <param name="material" value="Stahlwerkstoffe (normal zerspanbar)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="38.001" />
+              <param name="spindleSpeed" value="756" />
+              <param name="feedratePerEdge" value="0.076" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="172.368" />
+              <param name="zFeedrate" value="41580" />
+              <param name="material" value="Edelstähle / rostfreier Stahl (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="475.009" />
+              <param name="spindleSpeed" value="9450" />
+              <param name="feedratePerEdge" value="0.076" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="2154.6" />
+              <param name="zFeedrate" value="6615000" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="757182">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="757182" active="1" withCoupling="1">
+        <cont2D name="757182">
+          <elem2D type="line" sx="0" sy="0" ex="13.500000000089358" ey="0" />
+          <elem2D type="line" ex="17" ey="44.47171662650095" />
+          <elem2D type="line" ex="17" ey="67.049999999999997" />
+          <elem2D type="cwarc" cx="18.999999999999989" cy="67.050000000000026" ex="18.555590279134222" ey="69.000000000000014" />
+          <elem2D type="line" ex="31.5" ey="69" />
+          <elem2D type="line" ex="31.499999999999993" ey="73.60806716846318" />
+          <elem2D type="line" ex="28.937547169475522" ey="75.087500000000006" />
+          <elem2D type="line" ex="27.475000000000026" ey="75.087500000000034" />
+          <elem2D type="line" ex="27.475000000000023" ey="78.912499999999994" />
+          <elem2D type="line" ex="28.93754716947549" ey="78.912499999999994" />
+          <elem2D type="line" ex="31.5" ey="80.391932835577364" />
+          <elem2D type="line" ex="31.5" ey="95" />
+          <elem2D type="line" ex="0" ey="95" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Schaftfräser">
+      <ncTools folder="700302 - Schlichtfräser">
+        <ncTool id="757182" ncNumber="757182" name="Schlichtfräser Holex Ø16 VHM">
+          <param name="comment" value="48 frei / 50 raus / D-min 15,4 / L-min 28" />
+          <param name="maxSpindleSpeed" value="25000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="757182" type="holder" />
+            <component name="757182" type="tool" reach="50.000000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="FAVORIT" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Stahlwerkstoffe (normal zerspanbar)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="1.6" />
+              <param name="cuttingWidth" value="1.6" />
+            </cuttingProfile>
+            <cuttingProfile material="Edelstähle / rostfreier Stahl (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="1.6" />
+              <param name="cuttingWidth" value="1.6" />
+            </cuttingProfile>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="1.6" />
+              <param name="cuttingWidth" value="1.6" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Spindler / Ausdreher">
+      <tools folder="710302 - Spindler (einschneidig)">
+        <tool name="730210" type="boringBar">
+          <param name="cuttingMaterial" value="HM" />
+          <param name="comment" value="135 frei / mit Verlängerung" />
+          <param name="cuttingEdges" value="1" />
+          <param name="cuttingLength" value="5.655" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="55.026" />
+          <param name="toolDiameter" value="40.004" />
+          <param name="coneAngle" value="180.000000" />
+          <param name="minDrillDiameter" value="40.003733" />
+          <param name="maxDrillDiameter" value="40.003733" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="5.0255816250021894" ex="11.500000000000023" ey="5.0255816250021894" />
+              <elem2D type="line" ex="12.499978707448513" ey="6.0255484727693727" />
+              <elem2D type="line" ex="12.499963399254739" ey="55.025581625002189" />
+              <elem2D type="line" ex="0" ey="55.025581625002189" />
+            </cont2D>
+          </geometry>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="730210">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="730210" active="1" withCoupling="1">
+        <cont2D name="730210">
+          <elem2D type="line" sx="0" sy="0" ex="12.499944654540464" ey="0" />
+          <elem2D type="line" ex="12.499938406302356" ey="19.999999999434152" />
+          <elem2D type="cwarc" cx="16.499908203162818" cy="20.000030203139534" ex="16.499877999900679" ey="24" />
+          <elem2D type="line" ex="31.500000000000004" ey="23.999999999999972" />
+          <elem2D type="line" ex="31.499999999999996" ey="28.608067168463151" />
+          <elem2D type="line" ex="28.937547169475526" ey="30.087499999999977" />
+          <elem2D type="line" ex="27.47500000000003" ey="30.087500000000006" />
+          <elem2D type="line" ex="27.475000000000023" ey="33.912499999999966" />
+          <elem2D type="line" ex="28.937547169475494" ey="33.912499999999966" />
+          <elem2D type="line" ex="31.500000000000004" ey="35.391932835577336" />
+          <elem2D type="line" ex="31.5" ey="50.000418374997821" />
+          <elem2D type="line" ex="0" ey="50.000418374997821" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <extensions>
+    <extension name="730210">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling type="unknown" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="730210" active="1" withCoupling="1">
+        <cont2D name="730210">
+          <elem2D type="line" sx="0" sy="0" ex="12.499963399254739" ey="0" />
+          <elem2D type="line" ex="12.499944654540464" ey="60" />
+          <elem2D type="line" ex="0" ey="60" />
+        </cont2D>
+      </geometry>
+    </extension>
+  </extensions>
+  <ncTools>
+    <ncTools folder="Spindler / Ausdreher">
+      <ncTools folder="710302 - Spindler (einschneidig)">
+        <ncTool id="730210" ncNumber="730210" name="Spindler Ø40H7 SCHLICHTER">
+          <param name="comment" value="135 frei / mit Verlängerung" />
+          <param name="maxSpindleSpeed" value="6500" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="730210" type="holder" />
+            <component name="730210" type="extension" reach="60.000000" />
+            <component name="730210" type="tool" reach="55.025582" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

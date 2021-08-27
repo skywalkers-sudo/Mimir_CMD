@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Gewindefräser">
+      <tools folder="700801 - Metrische Gewindefräser">
+        <tool name="743916" type="threadMill">
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="20 frei / 25 raus" />
+          <param name="toolShaftChamferLength" value="0" />
+          <param name="taperHeight" value="20" />
+          <param name="toolShaftDiameter" value="6" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="20" />
+          <param name="collar" value="1" />
+          <param name="tipDiameter" value="3.36" />
+          <param name="cuttingEdges" value="4" />
+          <param name="cuttingLength" value="3" />
+          <param name="spindleRotation" value="counterClockwise" />
+          <param name="toolTotalLength" value="50" />
+          <param name="toolDiameter" value="4.6" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <param name="pitch" value="1" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="1.3000000000000027" ey="0" cuttingArea="1" />
+              <elem2D type="ccwarc" cx="1.3000000000000127" cy="0.99999999999999034" ex="2.3000000000000029" ey="1" cuttingArea="1" />
+              <elem2D type="line" ex="2.2999999999999998" ey="3" cuttingArea="1" />
+              <elem2D type="line" ex="1.6799999999999999" ey="3" cuttingArea="1" />
+              <elem2D type="line" ex="1.6799999999999999" ey="20" />
+              <elem2D type="line" ex="0" ey="20" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="3" ey="0" />
+              <elem2D type="line" ex="3" ey="5" />
+              <elem2D type="line" ex="0" ey="5" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="35" />
+              <param name="spindleSpeed" value="2420" />
+              <param name="feedratePerEdge" value="0.018" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="174.24" />
+              <param name="zFeedrate" value="314600" />
+              <param name="material" value="Inconel und andere Sonderlegierungen" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="743916">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="743916" active="1" withCoupling="1">
+        <cont2D name="743916">
+          <elem2D type="line" sx="0" sy="0" ex="5.9310000000001537" ey="0" />
+          <elem2D type="line" ex="6.7392999999999859" ey="1.4000000000000909" />
+          <elem2D type="line" ex="6.7392999999999859" ey="35.871621221470718" />
+          <elem2D type="line" ex="9.7367999999999917" ey="50.000000000000057" />
+          <elem2D type="line" ex="9.7368000000000166" ey="84.072702814575422" />
+          <elem2D type="cwarc" cx="14.650003589981569" cy="85.000046430392871" ex="14.650003589978736" ey="90.000000000017792" />
+          <elem2D type="line" ex="19.72500000003765" ey="90.000000000037716" />
+          <elem2D type="line" ex="22.224999999999991" ey="92.500000000000057" />
+          <elem2D type="line" ex="22.224999999999994" ey="133.30000056030664" />
+          <elem2D type="cwarc" cx="22.974999439693566" cy="133.30000056030661" ex="22.705741303382734" ey="134.00000000000003" />
+          <elem2D type="line" ex="31.5" ey="134.00000000000006" />
+          <elem2D type="line" ex="31.5" ey="138.60806716846324" />
+          <elem2D type="line" ex="28.937547169475494" ey="140.08750000000006" />
+          <elem2D type="line" ex="27.475000000000026" ey="140.08750000000009" />
+          <elem2D type="line" ex="27.475000000000023" ey="143.91250000000008" />
+          <elem2D type="line" ex="28.937547169475529" ey="143.91250000000008" />
+          <elem2D type="line" ex="31.500000000188308" ey="145.39193283568613" />
+          <elem2D type="line" ex="31.5" ey="160" />
+          <elem2D type="line" ex="0" ey="160" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Gewindefräser">
+      <ncTools folder="700801 - Metrische Gewindefräser">
+        <ncTool id="743916" ncNumber="743916" name="Gewindefräser Hitachi Ø4,6 P=1 freigeschliffen">
+          <param name="comment" value="20 frei / 25 raus" />
+          <param name="maxSpindleSpeed" value="20000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="743916" type="holder" />
+            <component name="743916" type="tool" reach="25.000000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Inconel und andere Sonderlegierungen" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

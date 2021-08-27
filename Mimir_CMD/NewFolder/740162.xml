@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Radienfräser">
+      <tools folder="701202 - Torusfräser">
+        <tool name="740162" type="radiusMill">
+          <param name="cornerRadius" value="4" />
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="38 frei / 40 raus" />
+          <param name="toolShaftChamferLength" value="0" />
+          <param name="taperHeight" value="38" />
+          <param name="toolShaftDiameter" value="12" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="38" />
+          <param name="collar" value="1" />
+          <param name="tipDiameter" value="11" />
+          <param name="cuttingEdges" value="2" />
+          <param name="cuttingLength" value="12" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="83" />
+          <param name="toolDiameter" value="12" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="2.0000000000000102" ey="0" cuttingArea="1" />
+              <elem2D type="ccwarc" cx="2.0000000000000009" cy="3.9999999999999956" ex="5.9999999999999964" ey="4" cuttingArea="1" />
+              <elem2D type="line" ex="6" ey="12" cuttingArea="1" />
+              <elem2D type="line" ex="5.5" ey="12" cuttingArea="1" />
+              <elem2D type="line" ex="5.5" ey="38" />
+              <elem2D type="line" ex="0" ey="38" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="6" ey="0" />
+              <elem2D type="line" ex="6" ey="2" />
+              <elem2D type="line" ex="0" ey="2" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="140.014501" />
+              <param name="spindleSpeed" value="3714" />
+              <param name="feedratePerEdge" value="0.02785" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="206.8698" />
+              <param name="zFeedrate" value="103.999428" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="740162">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="740162" active="1" withCoupling="1">
+        <cont2D name="740162">
+          <elem2D type="line" sx="0" sy="0" ex="12.000000406960226" ey="0" />
+          <elem2D type="line" ex="15.950000000000038" ey="50.471050000000076" />
+          <elem2D type="line" ex="15.950000000000045" ey="61.000000000000014" />
+          <elem2D type="cwarc" cx="18.950000000000163" cy="61.000000000000043" ex="18.950000000000042" ey="64.000000000000156" />
+          <elem2D type="line" ex="31.5" ey="64.000000000000171" />
+          <elem2D type="line" ex="31.5" ey="68.608067168463336" />
+          <elem2D type="line" ex="28.937547169475494" ey="70.087500000000176" />
+          <elem2D type="line" ex="27.475000000000026" ey="70.087500000000205" />
+          <elem2D type="line" ex="27.475000000000023" ey="73.912500000000179" />
+          <elem2D type="line" ex="28.937547169475529" ey="73.912500000000193" />
+          <elem2D type="line" ex="31.500000000188308" ey="75.391932835686234" />
+          <elem2D type="line" ex="31.5" ey="90" />
+          <elem2D type="line" ex="0" ey="90" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Radienfräser">
+      <ncTools folder="701202 - Torusfräser">
+        <ncTool id="740162" ncNumber="740162" name="Torusfräser Garant ZOX Ø12/R4,0">
+          <param name="comment" value="38 frei / 40 raus" />
+          <param name="maxSpindleSpeed" value="25000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="740162" type="holder" />
+            <component name="740162" type="tool" reach="40.000000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="12" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

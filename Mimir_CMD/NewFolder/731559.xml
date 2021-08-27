@@ -1,0 +1,155 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Metrische-Gewinde">
+      <tools folder="720002 - Gewindeformer RH">
+        <tool name="731559" type="tapTool">
+          <param name="minorThreadDiameter" value="2.8" />
+          <param name="cuttingMaterial" value="HSS E PM" />
+          <param name="comment" value="18 frei / 36 raus" />
+          <param name="toolShaftChamferLength" value="5.5" />
+          <param name="taperHeight" value="18" />
+          <param name="toolShaftDiameter" value="3.5" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="23.5" />
+          <param name="collar" value="1" />
+          <param name="tipDiameter" value="2.8" />
+          <param name="cuttingEdges" value="1" />
+          <param name="cuttingLength" value="9" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="56" />
+          <param name="toolDiameter" value="3" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <param name="pitch" value="0.500000" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="1.2" ey="0" cuttingArea="1" />
+              <elem2D type="line" ex="1.5" ey="1.25" cuttingArea="1" />
+              <elem2D type="line" ex="1.5" ey="9" cuttingArea="1" />
+              <elem2D type="line" ex="1.3999999999999999" ey="9" cuttingArea="1" />
+              <elem2D type="line" ex="1.3999999999999999" ey="18" />
+              <elem2D type="line" ex="0" ey="18" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="1.3999999999999999" ey="0" />
+              <elem2D type="line" ex="1.75" ey="5.5" />
+              <elem2D type="line" ex="1.75" ey="18" />
+              <elem2D type="line" ex="0" ey="18" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="HSS E PM" />
+              <param name="coolants" value="" />
+              <param name="cuttingSpeed" value="" />
+              <param name="spindleSpeed" value="2440" />
+              <param name="feedratePerEdge" value="0.5" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Stahlwerkstoffe (normal zerspanbar)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="HSS E PM" />
+              <param name="coolants" value="" />
+              <param name="cuttingSpeed" value="" />
+              <param name="spindleSpeed" value="1170" />
+              <param name="feedratePerEdge" value="0.5" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Edelstähle / rostfreier Stahl (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="HSS E PM" />
+              <param name="coolants" value="" />
+              <param name="cuttingSpeed" value="" />
+              <param name="spindleSpeed" value="1800" />
+              <param name="feedratePerEdge" value="0.5" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="731559">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="731559" active="1" withCoupling="1">
+        <cont2D name="731559">
+          <elem2D type="line" sx="0" sy="0" ex="11.499999999988518" ey="0" />
+          <elem2D type="line" ex="13.999999999986017" ey="1.443375333331872" />
+          <elem2D type="line" ex="13.999999999986013" ey="16.699999999983277" />
+          <elem2D type="line" ex="13.199999999986783" ey="17.499999999982506" />
+          <elem2D type="line" ex="10.924999999989083" ey="17.499999999982506" />
+          <elem2D type="line" ex="10.924999999989083" ey="28.599999999971388" />
+          <elem2D type="line" ex="13.999999999986018" ey="28.599999999971388" />
+          <elem2D type="line" ex="13.999999999986027" ey="68.049999999931956" />
+          <elem2D type="cwarc" cx="19.999999999980034" cy="68.049999999931956" ex="19.227018758093731" ey="73.999999999900027" />
+          <elem2D type="line" ex="31.5" ey="73.999999999900012" />
+          <elem2D type="line" ex="31.499999999999993" ey="78.608067168363192" />
+          <elem2D type="line" ex="28.937547169475522" ey="80.087499999900018" />
+          <elem2D type="line" ex="27.475000000000026" ey="80.087499999900047" />
+          <elem2D type="line" ex="27.475000000000019" ey="83.912499999900007" />
+          <elem2D type="line" ex="28.93754716947549" ey="83.912499999900007" />
+          <elem2D type="line" ex="31.5" ey="85.391932835477348" />
+          <elem2D type="line" ex="31.5" ey="100" />
+          <elem2D type="line" ex="0" ey="100" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Metrische-Gewinde">
+      <ncTools folder="720002 - Gewindeformer RH">
+        <ncTool id="731559" ncNumber="731559" name="Gewindeformer M3">
+          <param name="comment" value="18 frei / 36 raus" />
+          <param name="maxSpindleSpeed" value="10000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="731559" type="holder" />
+            <component name="731559" type="tool" reach="36.000000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Stahlwerkstoffe (normal zerspanbar)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Edelstähle / rostfreier Stahl (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Bohrer">
+      <tools folder="710101 - HSS-Bohrer">
+        <tool name="759049" type="drilTool">
+          <param name="cuttingMaterial" value="HSS" />
+          <param name="comment" value="80 raus / vermessen Spitze &amp; SK" />
+          <param name="cuttingEdges" value="2" />
+          <param name="cuttingLength" value="62.6" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="117" />
+          <param name="toolDiameter" value="8.3" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <param name="coneAngle" value="118.000000" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="4.1500000000000004" ey="2.49357156896437" cuttingArea="1" />
+              <elem2D type="line" ex="4.1500000000000004" ey="62.599999999999994" cuttingArea="1" />
+              <elem2D type="line" ex="4.1499999999999835" ey="75" />
+              <elem2D type="line" ex="0" ey="75" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="4.1499999999999835" ey="0" />
+              <elem2D type="line" ex="4.1499999999999773" ey="5" />
+              <elem2D type="line" ex="0" ey="5" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="HSS" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="17.991901" />
+              <param name="spindleSpeed" value="690" />
+              <param name="feedratePerEdge" value="0.04" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Stahlwerkstoffe (normal zerspanbar)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="HSS" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="44.979753" />
+              <param name="spindleSpeed" value="1725" />
+              <param name="feedratePerEdge" value="0.06" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="759049">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="759049" active="1" withCoupling="1">
+        <cont2D name="759049">
+          <elem2D type="line" sx="0" sy="0" ex="16" ey="0" />
+          <elem2D type="line" ex="20.999999999999986" ey="2.8867513333333363" />
+          <elem2D type="line" ex="20.99999999999994" ey="20" />
+          <elem2D type="line" ex="15.92500000000004" ey="20" />
+          <elem2D type="line" ex="15.92500000000004" ey="32.999999999999972" />
+          <elem2D type="line" ex="20.999999999999986" ey="32.999999999999972" />
+          <elem2D type="line" ex="21.000000000000004" ey="71.050000000000011" />
+          <elem2D type="cwarc" cx="23.999999999999982" cy="71.049999999999997" ex="23.454564394268001" ey="73.999999999999943" />
+          <elem2D type="line" ex="31.5" ey="73.999999999999943" />
+          <elem2D type="line" ex="31.499999999999993" ey="78.999999999999943" />
+          <elem2D type="line" ex="27.5" ey="79.999999999999943" />
+          <elem2D type="line" ex="27.500000000000007" ey="83.999999999999943" />
+          <elem2D type="line" ex="31.5" ey="84.999999999999943" />
+          <elem2D type="line" ex="31.5" ey="100" />
+          <elem2D type="line" ex="0" ey="100" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Bohrer">
+      <ncTools folder="710101 - HSS-Bohrer">
+        <ncTool id="759049" ncNumber="759049" name="Spiralbohrer Garant Ø8,3 HSS">
+          <param name="comment" value="80 raus / vermessen Spitze &amp; SK" />
+          <param name="maxSpindleSpeed" value="25000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="759049" type="holder" />
+            <component name="759049" type="tool" reach="80.000000" />
+          </components>
+          <referencePoints>
+            <referencePoint type="user" name="S2" offset="2.494" diameter="0" cRegister="2" />
+          </referencePoints>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Stahlwerkstoffe (normal zerspanbar)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="62.6" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="62.6" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

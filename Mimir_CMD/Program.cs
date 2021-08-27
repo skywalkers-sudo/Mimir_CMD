@@ -76,8 +76,8 @@ namespace Mimir_CMD
                 bool STATUSNC = true;           // Status vor NC Name schreiben
                 bool toNCNr = true;             // 000 and NC Nummer schreiben (ungeprüftes WKZ)
                 bool refpoint = true;           // Refpoint umschreiben aktivieren (nur Bohrer "S2" zu "1")
-                bool altfolder = true;         // alternative Ordnerbenennung (wie in Coscom)
-                bool folderstatus = true;      // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
+                bool altfolder = true;          // alternative Ordnerbenennung (wie in Coscom)
+                bool folderstatus = true;       // Werkzeuge nach Status in Ordnern strukturieren (noch nicht implementiert)
                 bool shaftmodepara = true;      // Wenn NominalØ gleich SchaftØ setze Schaftmodus auf parametric (bei Schaftfräser, Radienfräser, Kugelfräser und Bohrer)
                 // Settings ENDE
 
@@ -109,13 +109,13 @@ namespace Mimir_CMD
 
                     // stringbuilder für Info
                     StringBuilder sb = new();
- 
+
                     string datetime = DateTime.Now.ToString();
                     string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
-                    _ = sb.Append("\n Date: " + datetime + " /// Übergeben mit Version: " + version );
+                    _ = sb.Append("\n Date: " + datetime + " /// Übergeben mit Version: " + version);
                     _ = sb.Append("\n=============================  neues Wkz gefunden " + filename + "  ==============================");
- 
+
 
                     // ================================================================================FEATURE 1 CHECK (Werkzeugstatus vor NC-Namen hinzufügen) ====================================================================
                     if (STATUSNC == true)
@@ -370,7 +370,7 @@ namespace Mimir_CMD
 
                     // ================================================================================FEATURE 5 CHECK (Status folder)==============================================================================================
                     if (folderstatus == true)
-                    {                                       
+                    {
                         XmlDocument xmlDoc = new();
                         xmlDoc.Load(path1);             // xml laden
 
@@ -438,7 +438,7 @@ namespace Mimir_CMD
                         xmlDoc.Load(path1);             // xml laden
 
                         XmlNode nominalD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
-                        XmlNode shaftD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolDiameter']");
+                        XmlNode shaftD = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftDiameter']");
                         XmlNode shaftm = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool/param[@name='toolShaftType']");
                         XmlNode wkzclass = xmlDoc.SelectSingleNode("/omtdx/tools/tools/tools/tool");
 
@@ -478,14 +478,14 @@ namespace Mimir_CMD
 
                             }
                         }
-                        else 
+                        else
                         {
                             _ = sb.Append("\n" + " --> Schaftparametric wird nicht verwendet");
                         }
 
                         xmlDoc.Save(path1);
                     }
- 
+
                     // ================================================================================verschiebe Datei=======================================================================================
                     if (System.IO.Directory.Exists(TARGETXML))
                     {
@@ -498,13 +498,13 @@ namespace Mimir_CMD
                         File.Move(xmlList[0], @TARGETXML + filename);
                         _ = sb.Append("\n" + " --> Created Directory " + @TARGETXML + " and moved File");
                     }
- 
+
                     // ======================================================================  schreibe Infos in Ausgabefenster   ============================================================================
                     _ = sb.Append("\n" + "=====================================  Fini " + filename + "  ===================================== \n");
                     Console.WriteLine(sb);
 
                     // ========================================================================    INFOS in LOG schreiben      ===============================================================================
-                    
+
                     // if log directory exists
                     if (Directory.Exists(TARGETXML + "log_sync_xml/"))
                     {
@@ -532,11 +532,9 @@ namespace Mimir_CMD
                         myWriter.WriteLine(sb.ToString());
                         myWriter.Close();
                     }
-                     
 
 
-
-                    anzahlxml--;
+            anzahlxml--;
                 }
             }
 

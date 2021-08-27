@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="T-Nutenfräser">
+      <tools folder="701401 - T-Nutenfräser mit Einsätze (Dümmel, ...)">
+        <tool name="716621" type="Tslotcutter">
+          <param name="upperCornerRadius" value="0.2" />
+          <param name="upperCornerType" value="radius" />
+          <param name="lowerCornerRadius" value="0.2" />
+          <param name="lowerCornerType" value="radius" />
+          <param name="discHeight" value="3" />
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="50 raus / 2 Vermesspunkte" />
+          <param name="toolShaftChamferLength" value="0" />
+          <param name="taperHeight" value="3" />
+          <param name="toolShaftDiameter" value="14.7" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="3" />
+          <param name="collar" value="1" />
+          <param name="cuttingEdges" value="3" />
+          <param name="cuttingLength" value="3" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="6.6" />
+          <param name="toolDiameter" value="27.7" />
+          <param name="cornerRadius" value="0.200000" />
+          <param name="tipDiameter" value="14.7" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="13.650000000000027" ey="0" cuttingArea="1" />
+              <elem2D type="ccwarc" cx="13.650000000000007" cy="0.19999999999998036" ex="13.849999999999987" ey="0.19999999999998863" cuttingArea="1" />
+              <elem2D type="line" ex="13.85" ey="2.8000000000000114" cuttingArea="1" />
+              <elem2D type="ccwarc" cx="13.650000000000029" cy="2.8000000000000287" ex="13.649999999999997" ey="3" cuttingArea="1" />
+              <elem2D type="line" ex="7.3499999999999996" ey="3" cuttingArea="1" />
+              <elem2D type="line" ex="7.3499999999999996" ey="6.5999999999999943" />
+              <elem2D type="line" ex="7.1500000000000004" ey="6.5999999999999943" />
+              <elem2D type="line" ex="7.1500000000000004" ey="42.099999999999994" />
+              <elem2D type="line" ex="8" ey="44.099999999999994" />
+              <elem2D type="line" ex="8" ey="51.5" />
+              <elem2D type="line" ex="0" ey="51.5" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="1" />
+              <param name="cuttingSpeed" value="180" />
+              <param name="spindleSpeed" value="" />
+              <param name="feedratePerEdge" value="" />
+              <param name="planeFeedrateFormula" value="fF" />
+              <param name="reducedFeedrateFormula" value="fFreduziert" />
+              <param name="planeFeedrate" value="" />
+              <param name="zFeedrateFormula" value="fFZustellung" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="716621">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="716621" active="1" withCoupling="1">
+        <cont2D name="716621">
+          <elem2D type="line" sx="0" sy="0" ex="15.999999999999773" ey="0" />
+          <elem2D type="line" ex="18.799999999999955" ey="7.5" />
+          <elem2D type="line" ex="18.799999999999923" ey="49.550000000000253" />
+          <elem2D type="line" ex="24.99999999999994" ey="55.086945812808295" />
+          <elem2D type="line" ex="24.99999999999995" ey="69.000000000000512" />
+          <elem2D type="line" ex="31.5" ey="69.000000000000512" />
+          <elem2D type="line" ex="31.5" ey="73.608067168463677" />
+          <elem2D type="line" ex="28.937547169475494" ey="75.087500000000517" />
+          <elem2D type="line" ex="27.475000000000026" ey="75.087500000000546" />
+          <elem2D type="line" ex="27.475000000000019" ey="78.912500000000534" />
+          <elem2D type="line" ex="28.937547169475529" ey="78.912500000000534" />
+          <elem2D type="line" ex="31.500000000188308" ey="80.391932835686589" />
+          <elem2D type="line" ex="31.5" ey="95" />
+          <elem2D type="line" ex="0" ey="95" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="7014 - T-Nutenfräser">
+      <ncTools folder="701401 - T-Nutenfräser mit Einsätze (Dümmel, ...)">
+        <ncTool id="716621" ncNumber="716621000" name="Freigegeben // T-Nutenfräser Dümmel Ø27,7x3">
+          <param name="comment" value="50 raus / 2 Vermesspunkte" />
+          <param name="maxSpindleSpeed" value="15000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="716621" type="holder" />
+            <component name="716621" type="tool" reach="51.500000" />
+          </components>
+          <customData>
+            <param name="Werkzeugstatus" value="Freigegeben" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="1.85" />
+              <param name="cuttingWidth" value="1.85" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>

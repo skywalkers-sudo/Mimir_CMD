@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<omtdx version="27">
+  <couplings>
+    <coupling type="isoAdaptor">
+      <param name="class" value="HSK63" />
+      <param name="isoCode" value="HSK01C0630$$$$" />
+      <param name="gagePointOffset" value="0" />
+      <param name="lengthOfUnit" value="mm" />
+    </coupling>
+  </couplings>
+  <tools>
+    <tools folder="Bohrer">
+      <tools folder="710102 - VHM-Bohrer">
+        <tool name="720654" type="drilTool">
+          <param name="cuttingMaterial" value="VHM" />
+          <param name="comment" value="65 raus / vermessen Spitze &amp; SK" />
+          <param name="toolShaftChamferLength" value="2" />
+          <param name="taperHeight" value="61" />
+          <param name="toolShaftDiameter" value="10" />
+          <param name="toolShaftChamferDefMode" value="length" />
+          <param name="toolShaftChamferAbsPos" value="63" />
+          <param name="collar" value="1" />
+          <param name="tipDiameter" value="8.3" />
+          <param name="cuttingEdges" value="2" />
+          <param name="cuttingLength" value="49" />
+          <param name="spindleRotation" value="clockwise" />
+          <param name="toolTotalLength" value="103" />
+          <param name="toolDiameter" value="8.3" />
+          <param name="toolShaftEnabled" value="1" />
+          <param name="toolShaftType" value="free" />
+          <param name="coneAngle" value="140.000000" />
+          <coupling type="unknown" location="top" />
+          <geometry name="freeTip" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="4.1500000000000004" ey="1.5104764722047435" cuttingArea="1" />
+              <elem2D type="line" ex="4.1500000000000004" ey="49" cuttingArea="1" />
+              <elem2D type="line" ex="4.1500000000000004" ey="61" />
+              <elem2D type="line" ex="0" ey="61" />
+            </cont2D>
+          </geometry>
+          <geometry name="freeShaft" active="1" withCoupling="1">
+            <cont2D>
+              <elem2D type="line" sx="0" sy="0" ex="4.1500000000000004" ey="0" />
+              <elem2D type="line" ex="5" ey="2" />
+              <elem2D type="line" ex="5" ey="4" />
+              <elem2D type="line" ex="0" ey="4" />
+            </cont2D>
+          </geometry>
+          <tecsets>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="2" />
+              <param name="cuttingSpeed" value="79.998772" />
+              <param name="spindleSpeed" value="3068" />
+              <param name="feedratePerEdge" value="0.075" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Stahlwerkstoffe (normal zerspanbar)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="2" />
+              <param name="cuttingSpeed" value="25.006135" />
+              <param name="spindleSpeed" value="959" />
+              <param name="feedratePerEdge" value="0.035" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Titan und Titanlegierungen" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="2" />
+              <param name="cuttingSpeed" value="39.999386" />
+              <param name="spindleSpeed" value="1534" />
+              <param name="feedratePerEdge" value="0.045" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Edelstähle / rostfreier Stahl (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+            <tecset type="milling">
+              <param name="cuttingMaterial" value="VHM" />
+              <param name="coolants" value="2" />
+              <param name="cuttingSpeed" value="225.003065" />
+              <param name="spindleSpeed" value="8629" />
+              <param name="feedratePerEdge" value="0.08" />
+              <param name="zFeedrateFormula" value="fF" />
+              <param name="zFeedrate" value="0" />
+              <param name="planeFeedrate" value="0" />
+              <param name="material" value="Aluminium -legierungen (normal)" />
+              <param name="purpose" value="Universal" />
+            </tecset>
+          </tecsets>
+        </tool>
+      </tools>
+    </tools>
+  </tools>
+  <holders>
+    <holder name="720654">
+      <param name="lengthOfUnit" value="mm" />
+      <coupling class="HSK63" isoCode="HSK01C0630$$$$" type="isoAdaptor" location="top" />
+      <coupling type="unknown" location="bottom" />
+      <geometry name="720654" active="1" withCoupling="1">
+        <cont2D name="720654">
+          <elem2D type="line" sx="0" sy="0" ex="12.987631974369378" ey="0" />
+          <elem2D type="line" ex="14.834999999999983" ey="7.4929020215029851" />
+          <elem2D type="line" ex="14.835000000000012" ey="38.99708081127261" />
+          <elem2D type="line" ex="24.924999999999997" ey="45" />
+          <elem2D type="line" ex="24.924999999999997" ey="58.299999999999997" />
+          <elem2D type="line" ex="25.405741759643274" ey="59" />
+          <elem2D type="line" ex="31.5" ey="59" />
+          <elem2D type="line" ex="31.5" ey="63.60806716846318" />
+          <elem2D type="line" ex="28.937547169475494" ey="65.087500000000006" />
+          <elem2D type="line" ex="27.475000000000026" ey="65.087500000000034" />
+          <elem2D type="line" ex="27.475000000000019" ey="68.912500000000023" />
+          <elem2D type="line" ex="28.937547169475529" ey="68.912500000000023" />
+          <elem2D type="line" ex="31.500000000188308" ey="70.391932835686077" />
+          <elem2D type="line" ex="31.5" ey="85" />
+          <elem2D type="line" ex="0" ey="85" />
+        </cont2D>
+      </geometry>
+    </holder>
+  </holders>
+  <ncTools>
+    <ncTools folder="Bohrer">
+      <ncTools folder="710102 - VHM-Bohrer">
+        <ncTool id="720654" ncNumber="720654" name="Spiralbohrer Kenna Ø8,3 HM IKZ">
+          <param name="comment" value="65 raus / vermessen Spitze &amp; SK" />
+          <param name="maxSpindleSpeed" value="20000" />
+          <param name="lengthOfUnit" value="mm" />
+          <components>
+            <component name="720654" type="holder" />
+            <component name="720654" type="tool" reach="65.000000" />
+          </components>
+          <referencePoints>
+            <referencePoint type="user" name="S2" offset="1.50999999999999" diameter="0" cRegister="2" />
+          </referencePoints>
+          <customData>
+            <param name="Werkzeugstatus" value="FAVORIT" />
+          </customData>
+          <cuttingProfiles>
+            <cuttingProfile material="Stahlwerkstoffe (normal zerspanbar)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="49" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Titan und Titanlegierungen" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="49" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Edelstähle / rostfreier Stahl (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="49" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+            <cuttingProfile material="Aluminium -legierungen (normal)" purpose="Universal" type="milling">
+              <param name="cuttingLength" value="49" />
+              <param name="cuttingWidth" value="" />
+            </cuttingProfile>
+          </cuttingProfiles>
+        </ncTool>
+      </ncTools>
+    </ncTools>
+  </ncTools>
+</omtdx>
