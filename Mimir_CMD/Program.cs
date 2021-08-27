@@ -237,47 +237,47 @@ namespace Mimir_CMD
                                 // ------------------Fräswerkzeuge
                                 case "Planfräser / Messerköpfe":
                                     noderead1.Attributes[0].Value = "7000 - Planfräser / Messerköpfe";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Schaftfräser":
                                     noderead1.Attributes[0].Value = "7003 - Schaftfräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Kugelfräser / Ballfräser":
                                     noderead1.Attributes[0].Value = "7004 - Kugelfräser / Ballfräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Formfräser / Sonderfräswerkzeuge":
                                     noderead1.Attributes[0].Value = "7006 - Formfräser / Sonderfräswerkzeuge";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Gewindefräser":
                                     noderead1.Attributes[0].Value = "7008 - Gewindefräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Scheibenfräser und Sägeblätter":
                                     noderead1.Attributes[0].Value = "7009 - Scheibenfräser und Sägeblätter";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Tonnen- / Linsenfräser":
                                     noderead1.Attributes[0].Value = "7011 - Tonnen- / Linsenfräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Radienfräser":
                                     noderead1.Attributes[0].Value = "7012 - Radienfräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "T-Nutenfräser":
                                     noderead1.Attributes[0].Value = "7014 - T-Nutenfräser";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Bohrwerkzeuge--------------------
@@ -288,85 +288,85 @@ namespace Mimir_CMD
 
                                 case "Bohrer":
                                     noderead1.Attributes[0].Value = "7101 - Bohrer";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Reibahlen":
                                     noderead1.Attributes[0].Value = "7102 - Reibahlen";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Spindler / Ausdreher":
                                     noderead1.Attributes[0].Value = "7103 - Spindler / Ausdreher";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Zentrierbohrer":
                                     noderead1.Attributes[0].Value = "7104 - Zentrierbohrer";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Formbohrer & Reibahlen":
                                     noderead1.Attributes[0].Value = "7105 - Formbohrer & Reibahlen";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Gewindebohrer-/former--------------------
 
                                 case "Metrische-Gewinde":
                                     noderead1.Attributes[0].Value = "7200 - Metrische-Gewinde";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Zoll-Gewinde":
                                     noderead1.Attributes[0].Value = "7201 - Zoll-Gewinde";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Sonder-Gewinde":
                                     noderead1.Attributes[0].Value = "7202 - Sonder-Gewinde";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Senk und Faswerkzeuge --------------------
 
                                 case "Senk-Werkzeuge":
                                     noderead1.Attributes[0].Value = "7300 - Senk-Werkzeuge";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Entgratfräser (nur Winkel schneidend)":
                                     noderead1.Attributes[0].Value = "7303 - Entgratfräser (nur Winkel schneidend)";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Fasenfräser (mit Umfangsscheide)":
                                     noderead1.Attributes[0].Value = "7304 - Fasenfräser (mit Umfangsschneide)";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 case "Fasen- und Schriftstichel":
                                     noderead1.Attributes[0].Value = "7305 - Fasen- und Schriftstichel";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Messtaster --------------------
 
                                 case "Messtaster & Messdorne":
                                     noderead1.Attributes[0].Value = "7500 - Messtaster & Messdorne";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Reinigungswkz Propeller etc --------------------
 
                                 case "Bürsten, Propeller, usw...":
                                     noderead1.Attributes[0].Value = "7600 - Bürsten, Propeller, usw...";
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse " + noderead1.Attributes[0].Value + " gefunden -> Ordner aktualisiert");
                                     break;
 
                                 //------------------------------Wenns mal wieder schiefläuft --------------------
                                 default:
-                                    _ = sb.Append("\n" + " --> COSCOM ORDNERNAME:  Klasse für Ordner nicht gefunden ");
+                                    _ = sb.Append("\n" + " --> Alter. ORDNERNAME:  Klasse für Ordner nicht gefunden ");
                                     break;
                             }
                         }
